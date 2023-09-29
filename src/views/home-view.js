@@ -1,5 +1,8 @@
 import { LitElement, html, css } from 'lit';
 
+import "../components/input-lit.js";
+import "../components/boton-lit.js";
+
 export class Home extends LitElement {
   static styles = [
     css`
@@ -10,8 +13,10 @@ export class Home extends LitElement {
   ];
 
   render() {
-    return html` <h1>Home</h1>
-      <p>This is the home page.</p>`;
+    return html`
+      <my-input></my-input>
+      <my-boton></my-boton>
+    `;
   }
 }
-customElements.define('home-view', Home);
+customElements.define("home-view", Home);
