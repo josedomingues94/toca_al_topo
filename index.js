@@ -1,8 +1,10 @@
 import { LitElement, html, css } from 'lit';
+import { Router } from '@vaadin/router';
 
-const logo = new URL('../assets/open-wc-logo.svg', import.meta.url).href;
+import "./src/views/home-view.js";
+import "./src/views/game-view.js";
 
-class TopoBr extends LitElement {
+class Principal extends LitElement {
   static properties = {
     header: { type: String },
   }
@@ -50,39 +52,23 @@ class TopoBr extends LitElement {
     }
   `;
 
-  constructor() {
-    super();
-    this.header = 'My app';
+  firstUpdated() {
+    super.firstUpdated();
+    const router = new Router(this.shadowRoot.querySelector('#outlet'));
+    router.setRoutes([
+      { path: '/', component: 'home-view' },
+      { path: '/game', component: 'game-view' },
+      { path: '(.*)', redirect: '/' },
+    ]);
   }
 
   render() {
     return html`
       <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <p>Edit <code>src/TopoBr.js</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
+        <div id="outlet"></div>
       </main>
-
-      <p class="app-footer">
-        🚽 Made with love by
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/open-wc"
-          >open-wc</a
-        >.
-      </p>
     `;
   }
 }
 
-customElements.define('topo-br', TopoBr);
+customElements.define('my-principal', Principal);
