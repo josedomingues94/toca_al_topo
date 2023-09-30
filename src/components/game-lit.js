@@ -2,8 +2,7 @@ import { LitElement, html, css } from "lit";
 
 export class HitTheMole extends LitElement {
 
-    static get styles(){
-        return css`
+    static styles = css`
             .square{
                 width: 100px;
                 height: 100px;
@@ -25,7 +24,7 @@ export class HitTheMole extends LitElement {
                 background-repeat: no-repeat;
             }
         `;
-    }
+    
 
     render() {
         return html`

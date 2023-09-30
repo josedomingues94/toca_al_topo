@@ -1,12 +1,14 @@
 import { LitElement, html, css } from "lit";
 
-
 export class EscribirUser extends LitElement {
 
-    static get styles(){
-        return css`
+    static properties = {
+        player: {type: String}
+    }
+
+    static styles = css`
             input {
-                width: 90%;
+                width: 100%;
                 height: 15px;
                 margin-top: 2vh;
                 border-top: 0px;
@@ -14,13 +16,12 @@ export class EscribirUser extends LitElement {
                 border-right: 0px;
             }
         `;
-    }
 
     render(){
         return html`
-            <input id="user" type="text">
+            <input id="player" required>${this.player}</input>
         `;
     }
 }
 
-customElements.define("my-input", EscribirUser);
+customElements.define("input-lit", EscribirUser);

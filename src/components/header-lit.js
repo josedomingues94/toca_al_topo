@@ -5,20 +5,24 @@ import "./combo-lit";
 
 export class HeaderLit extends LitElement {
 
-    static get styles() {
-        return css`
+    static styles = css`
 
             .container {
                 background-color: blue;
+                display: flex;
+            }
+
+            label {
+                
             }
         `;
-    }
+    
 
     render(){
         return html `
             <div class="container">
                 <card-lit></card-lit>
-                
+
                 <label>Level</label>
                 <combo-lit></combo-lit>    
             </div>

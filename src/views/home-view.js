@@ -1,42 +1,34 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, nothing } from 'lit';
 
-import "../components/input-lit.js";
-import "../components/boton-lit.js";
+import "../components/input-lit";
+import "../components/boton-lit";
 export class Home extends LitElement {
-  static styles = [
-    css`
-      :host {
-        display: block;
-      }
 
-      .container {
-        border: solid 3px red;
-        margin-top: 100px;
-        height: 250px;
-        text-align: center;
-      }
+  static properties = {
+    name: {type: String},
+    player: {type: String}
+  }
 
-      img{
-        width: 50px;
-        height: 50px;
-      }
-    `,
-  ];
+  constructor() {
+    super();
+    this.name = "Jugar";
+    this.player = "";
+  }
+
+  get input() {
+    return this.renderRoot?.querySelector('input#player') ?? null;
+  }
 
   render() {
     return html`
-      <div class="container">
-        <div>
-          <img src="../../assets/images/icons/martillo.png">
-        </div>
-        <div>
-          <my-input></my-input>
-        </div>
-        <div>
-          <my-boton></my-boton>
-        </div>
-      </div>
+      <input-lit name="${this.player}" ></input-lit>
+      <boton-lit  name="${this.name}"></boton-lit>
     `;
   }
+
+  validarPlayer(){
+  }
+
+
 }
 customElements.define("home-view", Home);
