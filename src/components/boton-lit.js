@@ -1,9 +1,11 @@
 import { LitElement, html, css } from 'lit';
 
+import "./input-lit";
+
 export class BotonAddUser extends LitElement {
     render(){
         return html`
-            <button>Jugar</button>
+            <button"><a href="/game">Jugar</a></button>
         `;
     }
 }
