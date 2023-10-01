@@ -2,6 +2,11 @@ import { LitElement, html, css } from "lit";
 
 export class ComboLevel extends LitElement {
 
+    static properties = {
+        options: [Array]
+    };
+    
+
 
     static styles = css`
         select {
@@ -14,9 +19,9 @@ export class ComboLevel extends LitElement {
     render(){
         return html`
             <select>
-                <option>Facil</option>
-                <option>Intermedio</option>
-                <option>Dificil</option>
+                ${this.options.map(option => html`
+                    <option value="${option.value}">${option.label}</option>
+                `)}
             </select>
         `;
     }

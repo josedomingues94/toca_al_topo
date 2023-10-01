@@ -24,7 +24,12 @@ export class HeaderLit extends LitElement {
                 <card-lit></card-lit>
 
                 <label>Level</label>
-                <combo-lit></combo-lit>    
+                <combo-lit .options="${[
+                    {value: 'option1', label: 'Facil'},
+                    {value: 'option2', label: 'Intermedio'},
+                    {value: 'option3', label: 'Dificil'}
+                ]}">
+                </combo-lit>    
             </div>
         `;
     }
