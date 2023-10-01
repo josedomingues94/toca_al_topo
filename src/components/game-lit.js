@@ -31,7 +31,7 @@ export class HitTheMole extends LitElement {
 
             <div>
                 <h3>Puntos: </h3>
-                <h3 class="score">0</h3>
+                <h3 class="score"><span>0</span></h3>
                 <div class="grid">
                     <div class="square" id="1"></div>
                     <div class="square mole" id="2"></div>

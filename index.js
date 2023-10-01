@@ -5,11 +5,13 @@ import "./src/views/home-view.js";
 import "./src/views/game-view.js";
 
 class Principal extends LitElement {
+
   static properties = {
-    header: { type: String },
+    
   }
 
   static styles = css`
+    
     :host {
       min-height: 100vh;
       display: flex;
@@ -26,29 +28,6 @@ class Principal extends LitElement {
 
     main {
       flex-grow: 1;
-    }
-
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .app-footer {
-      font-size: calc(12px + 0.5vmin);
-      align-items: center;
-    }
-
-    .app-footer a {
-      margin-left: 5px;
     }
   `;
 

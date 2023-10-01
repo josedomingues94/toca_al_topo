@@ -1,6 +1,5 @@
-import { LitElement, html, css, nothing } from 'lit';
+import { LitElement, html, css } from 'lit';
 
-import "../components/input-lit";
 import "../components/boton-lit";
 export class Home extends LitElement {
 
@@ -15,20 +14,22 @@ export class Home extends LitElement {
     this.player = "";
   }
 
-  get input() {
-    return this.renderRoot?.querySelector('input#player') ?? null;
-  }
-
   render() {
     return html`
-      <input-lit name="${this.player}" ></input-lit>
-      <boton-lit  name="${this.name}"></boton-lit>
+      <img src="../../assets/images/icons/martillo.png" alt="">
+      <input id="player" type="text">
+      <boton-lit @click="${this.comprobar}" name="${this.name}"></boton-lit>
     `;
   }
 
-  validarPlayer(){
+  comprobar(e){
+    const myPlayer = this.shadowRoot.getElementById("player");
+    const playerName = myPlayer.value;
+    if(playerName != "")
+      location.href = `/game?value=${encodeURIComponent(playerName)}`;
+    else
+      location.href="/";
   }
-
 
 }
 customElements.define("home-view", Home);

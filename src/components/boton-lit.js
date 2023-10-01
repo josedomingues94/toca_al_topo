@@ -20,7 +20,6 @@ export class BotonComponentLit extends LitElement {
         }
     `;
 
-
     render(){
         return html`
             <button id="boton">${this.name}</button>

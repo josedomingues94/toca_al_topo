@@ -13,7 +13,7 @@ export class HeaderLit extends LitElement {
             }
 
             label {
-                
+                margin-left: 10%;
             }
         `;
     
