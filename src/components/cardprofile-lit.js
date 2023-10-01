@@ -3,10 +3,6 @@ import { LitElement, html, css } from "lit";
 
 export class CardProfile extends LitElement {
 
-    static properties = {
-        player: {type: String}
-    };
-
     static styles = css`
        
         img {
@@ -17,14 +13,17 @@ export class CardProfile extends LitElement {
 
     constructor(){
         super();
-        this.player = "";
+        const urlParams = new URLSearchParams(window.location.search);
+        this.valueReceived = urlParams.get('value');
+        
+        
     }
 
     render(){
         return html`
             
                 <img src="../../assets/images/icons/profile-user.svg" alt="">
-                <label>${this.player}</label>
+                <label>${this.valueReceived}</label>
             
         `;
     }
