@@ -30,11 +30,10 @@ export class HitTheMole extends LitElement {
         return html`
 
             <div>
-                <h3>Puntos: </h3>
-                <h3 class="score"><span>0</span></h3>
+                <h3>Puntos: <span id="puntos">0</span></h3>
                 <div class="grid">
                     <div class="square" id="1"></div>
-                    <div class="square mole" id="2"></div>
+                    <div class="square" id="2"></div>
                     <div class="square" id="3"></div>
                     <div class="square" id="4"></div>
                     <div class="square" id=5"></div>
@@ -45,6 +44,22 @@ export class HitTheMole extends LitElement {
                 </div>
             </div>
         `;
+    }
+
+    cajas = document.getElementById("square");
+    topo = document.getElementById("mole");
+    marcador = document.getElementById("score");
+
+    muestraTopo(){
+        cajas.forEach((square) => {
+            square.remove("mole");
+            
+        });
+
+        let aleatorio = cajas[Math.floor(Math.random() * 9)];
+        aleatorio.classList.add("mole");
+
+        
     }
 
 }
