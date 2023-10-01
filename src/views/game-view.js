@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 
-import "../components/header-lit";
+import "../components/cardprofile-lit";
+import "../components/combo-lit";
 import "../components/game-lit";
 import "../components/boton-lit";
 export class Game extends LitElement {
@@ -25,16 +26,26 @@ export class Game extends LitElement {
 
   render() {
     return html`
-      <header-lit></header-lit>
+      <header>
+        <card-lit></card-lit>
+        <label>Level</label>
+                <combo-lit .options="${[
+                    {value: 'option1', label: 'Facil'},
+                    {value: 'option2', label: 'Intermedio'},
+                    {value: 'option3', label: 'Dificil'}
+                ]}">
+                </combo-lit>  
+      </header>
+
+      
       <hitmole-lit></hitmole-lit> 
       <boton-lit @click=${this.startStop} name="${this.name}"></boton-lit>
     `;
   }
 
-  muevete(){
-    
-    
-  }
+  
+
+  
 
   startStop(){
     this.name = this.name === "START" ? "STOP" : "START";

@@ -46,22 +46,6 @@ export class HitTheMole extends LitElement {
         `;
     }
 
-    cajas = document.getElementById("square");
-    topo = document.getElementById("mole");
-    marcador = document.getElementById("score");
-
-    muestraTopo(){
-        cajas.forEach((square) => {
-            square.remove("mole");
-            
-        });
-
-        let aleatorio = cajas[Math.floor(Math.random() * 9)];
-        aleatorio.classList.add("mole");
-
-        
-    }
-
 }
 
 customElements.define("hitmole-lit", HitTheMole);
