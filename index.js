@@ -10,8 +10,7 @@ class Principal extends LitElement {
     
   }
 
-  static styles = css`
-    
+  static styles = css` 
     :host {
       min-height: 100vh;
       display: flex;
@@ -23,7 +22,6 @@ class Principal extends LitElement {
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
-      background-color: var(--topo-br-background-color);
     }
 
     main {

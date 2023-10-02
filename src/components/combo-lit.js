@@ -2,28 +2,31 @@ import { LitElement, html, css } from "lit";
 
 export class ComboLevel extends LitElement {
 
-    static properties = {
-        options: [Array]
-    };
-    
-
-
     static styles = css`
-        select {
-            margin-left: 20%;
+        select{
+            margin-left: 10px;
+            margin-bottom: 15px;
+            background-color: lightblue;
         }
     `;
-        
-    
 
+    static properties = {
+        options: [Array],
+        selectedOption: "",
+    };
+    
     render(){
         return html`
-            <select>
+            <select @change="${this.handleSelectChange}">
                 ${this.options.map(option => html`
                     <option value="${option.value}">${option.label}</option>
                 `)}
             </select>
         `;
+    }
+
+    handleSelectChange(event){
+        this.selectedOption = event.target.value;
     }
 
 }
