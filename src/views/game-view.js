@@ -43,6 +43,21 @@ export class Game extends LitElement {
       color: white;
       font-size: 1.2rem;
     }
+
+    .grid {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-content: center;
+      width: 400px;
+      height: 400px;
+    }
+
+    img {
+      background-image: url("../../assets/images/topo.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   `;
 
   constructor() {
@@ -50,7 +65,10 @@ export class Game extends LitElement {
     this.name = "START";
     this.puntos = 0;
     this.square = {};
-    this.dificultad = [];
+    this.square = [html`<div class="square"></div>`, html`<div class="square"></div>`,
+            html`<div class="square"></div>`, html`<div class="square"></div>`,
+            html`<div class="square"></div>`, html`<div class="square"></div>`,
+            html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`];
   }
 
   render() {
@@ -73,7 +91,9 @@ export class Game extends LitElement {
         </div>
       </header>
       <h3>Puntos: <span id="puntos">${this.puntos}</span></h3>
-      <hitmole-lit @cuadro-elegido="${this.handleSelectSquare}"></hitmole-lit>
+      <div class="grid">
+        ${this.square.map(item => html`<hitmole-lit></hitmole-lit>`)}  
+      </div>
       <boton-lit @click=${this.startStop} name="${this.name}"></boton-lit>
     `;
   }
