@@ -29,12 +29,11 @@ export class Game extends LitElement {
     }
     
     .right {
-        margin-top: 10px;
-        margin-left: 50px;
+        margin-top: 15px;
+        margin-left: 70px;
         position: relative;
         float: left;
         width: 50%;
-        border: steelblue solid 1px;
         height: auto;
     }
 
@@ -45,6 +44,7 @@ export class Game extends LitElement {
 
     label{
       color: white;
+      font-size: 1.2rem;
     }
   `;
 
@@ -65,7 +65,7 @@ export class Game extends LitElement {
           <card-lit></card-lit>
         </div>
         <div class="right">
-          <label>Level</label>
+          <label>Nivel</label>
           <combo-lit id="dificultad" .options="${[
             {value: 'option1', label: 'Facil'},
             {value: 'option2', label: 'Intermedio'},

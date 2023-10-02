@@ -7,11 +7,15 @@ export class CardProfile extends LitElement {
        
         img {
             color: white;
-            margin-top: 10px;
+            margin-top: 5px;
+            height: 50px;
         }
 
         label {
             color: white;
+            font-size: 1.5rem;
+            float: right;
+            margin-top: 15px;
         }
     
      `;
@@ -26,7 +30,7 @@ export class CardProfile extends LitElement {
 
     render(){
         return html` 
-            <img src="../../assets/images/icons/profile-user.svg" alt="">
+            <img src="../../assets/images/icons/perfil-del-usuario.png" alt="">
             <label>${this.valueReceived}</label>
         `;
     }
