@@ -5,12 +5,7 @@ import "../components/combo-lit";
 import "../components/game-lit";
 import "../components/boton-lit";
 export class Game extends LitElement {
-  static properties = {
-    name: { type: String },
-    puntos: { type: Number, value: 0 },
-    dificultad: { type: String },
-  };
-
+  
   static styles = css`
     header {
       background-color: blue;
@@ -53,22 +48,24 @@ export class Game extends LitElement {
       height: 400px;
     }
 
-    img {
-      background-image: url("../../assets/images/topo.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
   `;
+
+  static properties = {
+    name: { type: String },
+    puntos: { type: Number},
+    mensajeAcierto: {type: String, value: ""},
+    dificultad: {type: String, value: ""}
+  };
 
   constructor() {
     super();
     this.name = "START";
     this.puntos = 0;
-    this.square = {};
-    this.square = [html`<div class="square"></div>`, html`<div class="square"></div>`,
-            html`<div class="square"></div>`, html`<div class="square"></div>`,
-            html`<div class="square"></div>`, html`<div class="square"></div>`,
-            html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`];
+    this.image = html`<img class="img" src="../../assets/images/topo.png">`;
+    this.user = null;
+    this.square = [html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`,
+                  html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`,
+                  html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`];
   }
 
   render() {
@@ -79,7 +76,7 @@ export class Game extends LitElement {
         </div>
         <div class="right">
           <label>Nivel</label>
-          <combo-lit
+          <combo-lit @item-selected="${this.handleSelectedOption}"
             id="dificultad"
             .options="${[
               { value: "option1", label: "Bajo" },
@@ -87,23 +84,29 @@ export class Game extends LitElement {
               { value: "option3", label: "Alto" },
             ]}"
           >
+          
           </combo-lit>
+          
         </div>
       </header>
-      <h3>Puntos: <span id="puntos">${this.puntos}</span></h3>
+      <h3>Puntos: <span>${this.puntos}</span></h3>
       <div class="grid">
-        ${this.square.map(item => html`<hitmole-lit></hitmole-lit>`)}  
+        ${this.square.map(item => html`<hitmole-lit .enableButton="${this.clickDisabled}"></hitmole-lit>`)}
       </div>
       <boton-lit @click=${this.startStop} name="${this.name}"></boton-lit>
     `;
   }
 
-  handleSelectSquare(event) {
-    this.square = event.detail;
+  handleSelectedOption(event){
+    this.dificultad = event.detail;
+    
   }
 
+ 
   startStop() {
     this.name = this.name === "START" ? "STOP" : "START";
+    console.log(this.square);
+    
   }
 }
 customElements.define("game-view", Game);

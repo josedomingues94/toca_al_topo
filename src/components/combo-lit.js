@@ -12,12 +12,11 @@ export class ComboLevel extends LitElement {
 
   static properties = {
     options: [Array],
-    selectedOption: "",
   };
 
   render() {
     return html`
-      <select @change="${this.handleSelectChange}">
+      <select @change="${this._selectedOption}">
         ${this.options.map(
           (option) => html`
             <option value="${option.value}">${option.label}</option>
@@ -27,8 +26,8 @@ export class ComboLevel extends LitElement {
     `;
   }
 
-  handleSelectChange(event) {
-    this.selectedOption = event.target.value;
+  _selectedOption(event) {
+    this.dispatchEvent(new CustomEvent("item-selected", {detail: this.option}));
   }
 }
 
