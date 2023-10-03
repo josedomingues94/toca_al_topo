@@ -1,5 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
+import {StartDataBase} from '../../indexeddb.js';
+
 
 import "./src/views/home-view.js";
 import "./src/views/game-view.js";
@@ -42,6 +44,7 @@ class Principal extends LitElement {
       { path: '/game', component: 'game-view' },
       { path: '(.*)', redirect: '/' },
     ]);
+    StartDataBase();
   }
 
   render() {

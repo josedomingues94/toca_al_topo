@@ -1,4 +1,6 @@
 import { LitElement, html, css } from 'lit';
+import {ValidateUser} from '../../indexeddb.js';
+
 
 import "../components/boton-lit";
 export class Home extends LitElement {
@@ -44,14 +46,17 @@ export class Home extends LitElement {
     </div>
     `;
   }
-
-  
     
-  comprobar(e){
+  async comprobar(e){
     const myPlayer = this.shadowRoot.getElementById("player");
     const playerName = myPlayer.value;
-    if(playerName != "")
-      location.href = `/game?value=${encodeURIComponent(playerName)}`;
+    if(playerName != ""){
+      try{
+        this.score = await ValidateUser(playerName);
+        location.href = `/game?value=${encodeURIComponent(playerName)}&score=${encodeURIComponent(this.score)}`;
+      }
+       catch (error) { }
+    }
     else
       location.href="/";
   }

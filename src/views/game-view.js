@@ -68,7 +68,6 @@ export class Game extends LitElement {
     this.topos = [...this.toposModel];
     this.playerTouch = false;
     this.currentInterval = null;
-    this.velocidad = 0;
   }
 
   render() {
@@ -102,43 +101,45 @@ export class Game extends LitElement {
   //manejador que recibe el valor de la opcion del combo elegida
   handleSelectedOption(event){
     this.dificultad = event.detail;
+    this.currentInterval = null;
   }
 
-  myInterval(){
+   myInterval(time){
+    let movRandom = 0;
     return setInterval( () => {
-      let movRandom = Math.floor(Math.random() * this.topos.length);
+      movRandom = Math.floor(Math.random() * this.topos.length);
       this.toposModel[movRandom] = true;
       this.topos = [...this.toposModel];
       this.toposModel[movRandom] = false;
       this.clickDisabled = false;
       this.mensajeAcierto = "";
-    }, this.velocidad);
-
+    }, this.time);
   }
 
   seleccionDificultad(){
-
-    this.currentInterval = null;
-    if(this.currentInterval){
-      clearInterval(this.currentInterval);
+    console.log("antes de entrar en el if ",this.currentInterval)
+    if(this.currentInterval == null){ 
+      console.log("priemra linea if ",this.currentInterval)
+      clearInterval(this.myInterval);
+      console.log("saliendo del if ",this.currentInterval)
     }
       if(this.dificultad == "Bajo"){
-        console.log("nivel 1 " + this.dificultad);
-        this.velocidad = 1000;
-        this.myInterval(this.velocidad);
-        console.log("nivel 1 " + this.velocidad);
+       this.time = 1000;
+       this.currentInterval = this.myInterval(this.time);
+       this.currentInterval = null;
+       console.log("bajo ",this.currentInterval);
+       console.log(this.time);
       }
       else if(this.dificultad == "Medio"){
-        console.log("nivel 2 " + this.dificultad);
-        this.velocidad = 750;
-        this.myInterval(this.velocidad);
-        console.log("nivel 2 " + this.velocidad);
+        this.time = 750;
+        this.currentInterval = this.myInterval(this.time);
+        this.currentInterval = null;
+        console.log("medio ",this.currentInterval);
+       console.log(this.time); 
       }
       else if(this.dificultad == "Alto"){
-        console.log("nivel 3 " + this.dificultad);
-        this.velocidad = 500;
-        this.myInterval(this.velocidad);
-        console.log("nivel 3 " + this.velocidad);
+        this.time = 500;
+        this.currentInterval = this.myInterval(this.time);
       }   
   }
 
@@ -153,13 +154,8 @@ export class Game extends LitElement {
           this.puntos = this.puntos + 20;
         else if(this.dificultad == "Alto")
           this.puntos = this.puntos + 30;
-
-        console.log("acierto");
-        this.mensajeAcierto = "Le has dado";
+        this.mensajeAcierto = "Le diste";
       }      
-      else{
-        console.log("fallo");
-      }   
     }
   }
 

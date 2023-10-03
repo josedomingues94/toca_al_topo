@@ -1,7 +1,8 @@
 const STATIC_CACHE = "sataic";
+ 
 
 //Aqui especificamos que queremos guardar en cache
-const APP_SHELL = ["/", "index.html", "index.js"];
+const APP_SHELL = ["/", "/index.html", "/index.js", "/src/views/game-view.js", "/src/views/home-view.js",  "/src/", "/assets/images/topo.png"];
 
 self.addEventListener("install", (e) => {
   const cacheStatic = caches
