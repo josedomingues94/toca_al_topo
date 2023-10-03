@@ -5,29 +5,28 @@ export class ComboLevel extends LitElement {
     select {
       margin-left: 10px;
       margin-bottom: 15px;
-      background-color: lightblue;
+      background-color: blue;
       border-radius: 5px;
+      color:white;
+      border: none;
+      border-Bottom: 1px solid black;
     }
   `;
 
   static properties = {
-    options: [Array],
+    options: [Array]
   };
 
   render() {
     return html`
-      <select @change="${this._selectedOption}">
-        ${this.options.map(
-          (option) => html`
-            <option value="${option.value}">${option.label}</option>
-          `
-        )}
+      <select id="sel" @change="${this._selectedOption}">
+        ${this.options.map((option) => html`<option>${option.value}</option>`)}
       </select>
     `;
   }
 
   _selectedOption(event) {
-    this.dispatchEvent(new CustomEvent("item-selected", {detail: this.option}));
+    this.dispatchEvent(new CustomEvent("item-selected", {detail: event.target.value}));
   }
 }
 

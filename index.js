@@ -4,11 +4,13 @@ import { Router } from '@vaadin/router';
 import "./src/views/home-view.js";
 import "./src/views/game-view.js";
 
-class Principal extends LitElement {
+let swLocation = "sw.js";
+if(navigator.serviceWorker){
+  if(window.location.href.includes("localhost")) swLocation = "/sw.js";
+  navigator.serviceWorker.register(swLocation);
+}
 
-  static properties = {
-    
-  }
+class Principal extends LitElement {
 
   static styles = css` 
     :host {
@@ -22,10 +24,13 @@ class Principal extends LitElement {
       max-width: 960px;
       margin: 0 auto;
       text-align: center;
+     
     }
 
     main {
       flex-grow: 1;
+      background: rgb(238,174,202);
+      background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     }
   `;
 

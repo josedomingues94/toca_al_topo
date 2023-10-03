@@ -47,25 +47,24 @@ export class Game extends LitElement {
       width: 400px;
       height: 400px;
     }
-
   `;
 
   static properties = {
-    name: { type: String },
     puntos: { type: Number},
-    mensajeAcierto: {type: String, value: ""},
-    dificultad: {type: String}
+    mensajeAcierto: {type: String, value: ""}, 
+    playerTouch: {type: String, value: ""},
+    mostrar: {type: Boolean},
+    topos: {type: Array}
   };
 
   constructor() {
     super();
+    this.toposModel = [ false, false, false,false, false, false,false, false, false];
     this.name = "START";
+    this.dificultad = "Bajo";
     this.puntos = 0;
-    this.dificultad = "";
-    this.image = html`<img class="img" src="../../assets/images/topo.png">`;
-    this.square = [html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`,
-                  html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`,
-                  html`<div class="square"></div>`, html`<div class="square"></div>`, html`<div class="square"></div>`];
+    this.playerTouch = null;
+    this.topos = [...this.toposModel];
   }
 
   render() {
@@ -77,60 +76,92 @@ export class Game extends LitElement {
         <div class="right">
           <label>Nivel</label>   
           <combo-lit @item-selected="${this.handleSelectedOption}"
-          id="dificultad"
-            .options="${[
-              { value: "option1", label: "Bajo" },
-              { value: "option2", label: "Medio" },
-              { value: "option3", label: "Alto" },
-            ]}"
-          >   
+            id="dificultad"
+             .options="${[
+              { value: "Bajo" },
+              { value: "Medio" },
+              { value:  "Alto" },]}">   
           </combo-lit>  
         </div>
       </header>
       <h3>Puntos: <span>${this.puntos}</span></h3>
       <div class="grid">
-        ${this.square.map(item => html`<hitmole-lit .enableButton="${this.clickDisabled}" .item=${item} @click="${this._seleccionaCuadro(item)}"></hitmole-lit>`)}
+      
+        ${this.topos.map(item => html`<hitmole-lit @click-topo="${this.handleClickTopo}" .mostrar=${item}></hitmole-lit>`)}
       </div>
-      <boton-lit @click=${this.startStop} name="${this.name}"></boton-lit>
+      <boton-lit id="boton" @click=${this.startStop} name="${this.name}"></boton-lit>
+      <footer>
+              <p>${this.mensajeAcierto}</p>
+      </footer>
     `;
   }
 
+  //manejador que recibe el valor de la opcion del combo elegida
   handleSelectedOption(event){
-    this.options = event.detail;
-    console.log(this.options);
+    this.dificultad = event.detail;
   }
 
+  //manejador que recibe el valor de la opcion del combo elegida
+  handleClickTopo(event){
+    this.dificultad = event.detail;
+  }
+
+  //funcion que mueve al topo de forma aleatoria segun el nivel del combo
   movertopo(){
     let movRandom;
-    
+    if(this.dificultad == "Bajo"){
 
-    setTimeout(() =>{
-      movRandom = Math.floor(Math.random() * this.square.length);
-      console.log(movRandom);
-    }, 1000);
+      setInterval(() =>{
+        movRandom = Math.floor(Math.random() * this.topos.length);
+        this.toposModel[movRandom] = true;
+        this.topos = [...this.toposModel];
+        console.log(this.topos);
+        this.playerTouch = this.square;
+        this.clickDisabled = false;  
 
-    setTimeout(() =>{
-      movRandom = Math.floor(Math.random() * this.square.length);
-      console.log(movRandom);
-    }, 750);
+      }, 1000);
+    }
+    else if(this.dificultad == "Medio"){
+      setInterval(() =>{
+        movRandom = Math.floor(Math.random() * this.topos.length);
+        this.toposModel[movRandom] = true;
+        this.topos = [...this.toposModel];
 
-    setTimeout(() =>{
-      movRandom = Math.floor(Math.random() * this.square.length);
-      console.log(movRandom);
-    }, 500);
-    
+        this.clickDisabled = false;   
+      }, 750);
+    }
+    else{
+      setInterval(() =>{
+        movRandom = Math.floor(Math.random() * this.topos.length);
+        this.toposModel[movRandom] = true;
+        this.topos = [...this.toposModel];
+        
+      }, 500);
+    }
   }
 
-  _seleccionaCuadro(){
+  //funcion que se encarga de seleccionar un cuadro en concreto
+  _seleccionaCuadro(item){
+    this.item = html`<img src="../../assets/images/topo.png">`;
     if(!this.clickDisabled){
       this.clickDisabled = true;
+      this.playerTouch = 
+      this.mensajeAcierto = "";
     }
   }
 
 
+  //funcion que inicia y detiene el juego al pulsar el boton
   startStop() {
-    this.name = this.name === "START" ? "STOP" : "START";
-    console.log(this.square);
+    this.name = this.name === "STOP" ? "START" : "STOP";
+
+    
+    
+    this.movertopo();
+    
+
+    
   }
+
 }
 customElements.define("game-view", Game);
