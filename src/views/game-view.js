@@ -110,15 +110,13 @@ export class Game extends LitElement {
   movertopo(){
     let movRandom;
     if(this.dificultad == "Bajo"){
-
       setInterval(() =>{
         movRandom = Math.floor(Math.random() * this.topos.length);
         this.toposModel[movRandom] = true;
         this.topos = [...this.toposModel];
-        console.log(this.topos);
-        this.playerTouch = this.square;
+        this.toposModel[movRandom] = false;
+        
         this.clickDisabled = false;  
-
       }, 1000);
     }
     else if(this.dificultad == "Medio"){
@@ -126,6 +124,7 @@ export class Game extends LitElement {
         movRandom = Math.floor(Math.random() * this.topos.length);
         this.toposModel[movRandom] = true;
         this.topos = [...this.toposModel];
+        this.toposModel[movRandom] = false;
 
         this.clickDisabled = false;   
       }, 750);
@@ -135,26 +134,18 @@ export class Game extends LitElement {
         movRandom = Math.floor(Math.random() * this.topos.length);
         this.toposModel[movRandom] = true;
         this.topos = [...this.toposModel];
+        this.toposModel[movRandom] = false;
         
       }, 500);
     }
   }
 
-  //funcion que se encarga de seleccionar un cuadro en concreto
-  _seleccionaCuadro(item){
-    this.item = html`<img src="../../assets/images/topo.png">`;
-    if(!this.clickDisabled){
-      this.clickDisabled = true;
-      this.playerTouch = 
-      this.mensajeAcierto = "";
-    }
-  }
+ 
 
 
   //funcion que inicia y detiene el juego al pulsar el boton
   startStop() {
-    this.name = this.name === "STOP" ? "START" : "STOP";
-
+    this.name = this.name === "START" ? "STOP" : "START";
     
     
     this.movertopo();
