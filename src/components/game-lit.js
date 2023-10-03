@@ -41,13 +41,10 @@ export class HitTheMole extends LitElement {
 
   render() {
     return html`
-      <button ?disabled="${this.enableButton}" @click="${this._clickTopo}"><div class="square">${this.mostrar ? this._renderImage: ""}</div></button>
+      <button ?disabled="${this.enableButton}"><div class="square">${this.mostrar ? this._renderImage: ""}</div></button>
     `;
   }
 
-  _clickTopo(event) {
-    this.dispatchEvent(new CustomEvent("click-topo", {detail: event.target.value}));
-  }
 
 }
 
