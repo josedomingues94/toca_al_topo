@@ -8,12 +8,13 @@
   "scripts": {
     "analyze": "cem analyze --litelement",
     "start": "web-dev-server",
+    "test": "jasmine",
     "build": "rollup -c",
     "watch": "rollup -c -w"
   },
   "dependencies": {
-    "@open-wc/testing-helpers": "^1.2.0",
     "@vaadin/router": "^1.7.5",
+    "jasmine": "^5.1.0",
     "lit": "^2.0.2"
   },
   "devDependencies": {

@@ -4,55 +4,55 @@ _Proyecto aplicación funciona como una PWA, en la que se crea un usuario para j
 
 ## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
-Mira **Deployment** para conocer como desplegar el proyecto.
+_Creamos una carpeta en nuestro local para, clonarnos el proyecto desde el repositorio, en el que se encuentra el proyexto_
 
 
 ### Pre-requisitos 📋
 
-_Necesitamos instalar Node previamente y npm, podemos hacerlo desde su web https://nodejs.org/es o por comandos_
+_Necesitamos instalar Node previamente, podemos hacerlo desde su web https://nodejs.org/es_
+
+_Desde la carpeta que tenemos en nuestro local donde queremos añadir el proyecto, por consola realizamos el siguiente comando para inicializar el proyecto mediante  OpenWC_
 
 ```
-Da un ejemplo
+npm init @open-wc && npm i
+```
+
+_Desde la carpeta que tenemos en nuestro local donde queremos añadir el proyecto, por consola realizamos el siguiente comando para instalar la libreria de lit_
+
+```
+npm install lit
 ```
 
 ### Instalación 🔧
 
-_Necsitaremos instalar la libreria de Lit Element_
+_Desde la carpeta del proyecto donde nos encontramos realizamos el siguiente comando para instalar un servidor web para el desarrollo, este comando nos devolver un texto  que tenemos que añadir a nuestro packaje.json donde los scrips 
 
-_Desde la terminal, dentro de nuestra carpete del proyecto,realizaremos el siguiente comando_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
+"scripts": {
+  "start": "web-dev-server --node-resolve --open --watch"
+},_
 
 ```
-hasta finalizar
+npm i -D @web/dev-server
 ```
 
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
+_Realizamos el siguiente comando para agregar un sistema de enrutamiento mediante el enrutador Vaadin_
 
 ```
-Da un ejemplo
+npm i @vaadin/router
 ```
 
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
+_En la terminal dentro de la carpeta del proyecto, realizamos el siguiente comando, con esto se clonaria el proyecto del repositorio en nuestra carpeta local_
 
 ```
-Da un ejemplo
+git clone https://github.com/josedomingues94/toca-al-topo
+
+```
+
+_En la terminal dentro de la carpeta del proyecto, realizamos el siguiente comando para ejecutar nuestro proyecto inicial_
+
+```
+npm run start
+
 ```
 
 ## Despliegue 📦
@@ -61,16 +61,10 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
+_Se usaron estas herramientas para crear el proyecto_
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
-
-
-## Versionado 📌
-
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+* [Lit Element](https://lit.dev) - El framework web usado
+* [Javscript](https://developer.mozilla.org/es/docs/Web/JavaScript)
 
 ## Autor ✒️
 
