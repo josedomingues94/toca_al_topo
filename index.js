@@ -6,7 +6,7 @@ import {StartDataBase} from '../../indexeddb.js';
 import "./src/views/home-view.js";
 import "./src/views/game-view.js";
 
-let swLocation = "sw.js";
+let swLocation = "/sw.js";
 if(navigator.serviceWorker){
   if(window.location.href.includes("localhost")) swLocation = "/sw.js";
   navigator.serviceWorker.register(swLocation);

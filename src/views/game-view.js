@@ -78,7 +78,7 @@ export class Game extends LitElement {
         </div>
         <div class="right">
           <label>Nivel</label>   
-          <combo-lit @item-selected="${this.handleSelectedOption}" @click="${this.seleccionDificultad}"
+          <combo-lit @item-selected="${this.handleSelectedOption}"
             id="dificultad"
              .options="${[
               { value: "Bajo" },
@@ -117,30 +117,24 @@ export class Game extends LitElement {
   }
 
   seleccionDificultad(){
-    console.log("antes de entrar en el if ",this.currentInterval)
-    if(this.currentInterval == null){ 
-      console.log("priemra linea if ",this.currentInterval)
-      clearInterval(this.myInterval);
-      console.log("saliendo del if ",this.currentInterval)
+    if(this.currentInterval == null){  
+      clearInterval(this.currentInterval);   
     }
-      if(this.dificultad == "Bajo"){
-       this.time = 1000;
-       this.currentInterval = this.myInterval(this.time);
-       this.currentInterval = null;
-       console.log("bajo ",this.currentInterval);
-       console.log(this.time);
-      }
-      else if(this.dificultad == "Medio"){
-        this.time = 750;
-        this.currentInterval = this.myInterval(this.time);
-        this.currentInterval = null;
-        console.log("medio ",this.currentInterval);
-       console.log(this.time); 
-      }
-      else if(this.dificultad == "Alto"){
-        this.time = 500;
-        this.currentInterval = this.myInterval(this.time);
-      }   
+
+    if(this.dificultad == "Bajo"){
+      this.time = 1000;
+      this.currentInterval = null;
+      this.currentInterval = this.myInterval(this.time);
+    }
+    else if(this.dificultad == "Medio"){
+      this.time = 750;  
+      this.currentInterval = null;
+      this.currentInterval = this.myInterval(this.time);
+    }
+    else if(this.dificultad == "Alto"){
+      this.time = 500;
+      this.currentInterval = this.myInterval(this.time);
+    }   
   }
 
   elegido(item){
@@ -162,13 +156,19 @@ export class Game extends LitElement {
   //funcion que inicia y detiene el juego al pulsar el boton y mueve al topo 
   startStop() {
     this.name = this.name === "START" ? "STOP" : "START"; 
-
-    console.log(this.name)
     if(this.name != "START"){
-      this.seleccionDificultad();
-      console.log(this.name)
-    }else{
-      
+      if(this.dificultad == "Bajo"){
+        this.seleccionDificultad();
+      }
+      if(this.dificultad == "Medio"){
+        this.seleccionDificultad();
+      }
+      if(this.dificultad == "Alto"){
+        this.seleccionDificultad();
+      }
+    }
+    if(this.name != "STOP"){ 
+      clearInterval(this.currentInterval);
     }
     
   }
