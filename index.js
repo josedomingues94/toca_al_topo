@@ -1,15 +1,19 @@
 import { LitElement, html, css } from 'lit';
 import { Router } from '@vaadin/router';
-import {StartDataBase} from '../../indexeddb.js';
-
+import {StartDataBase} from './indexeddb.js';
 
 import "./src/views/home-view.js";
 import "./src/views/game-view.js";
 
-let swLocation = "/sw.js";
-if(navigator.serviceWorker){
-  if(window.location.href.includes("localhost")) swLocation = "/sw.js";
-  navigator.serviceWorker.register(swLocation);
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+      .register('/sw.js')
+      .then(function (registration) {
+          console.log('Registration successful, scope is:', registration.scope)
+      })
+      .catch(function (error) {
+          console.log('Service worker registration failed, error:', error)
+      })
 }
 
 class Principal extends LitElement {
